@@ -25,8 +25,26 @@ SECRET_KEY = 'django-insecure-t(y)6w01sg@n&1oqtufot5s8%d+*u)u2l6y^*eqi4-6h4l8$&j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ 
+	'example.us',
+    	'www.example.us',
+    	'example-us.vercel.app',
+    	'localhost',
+    	'*'
+]
 
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_REPLACE_HTTPS_REFERER = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:5173',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
 
 # Application definition
 
@@ -38,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +67,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
 
 ROOT_URLCONF = 'remote_copy.urls'
 
